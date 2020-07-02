@@ -1,4 +1,4 @@
-SOURCE="https://dl2.cdn.filezilla-project.org/client/FileZilla_3.48.1_x86_64-linux-gnu.tar.bz2?h=v--5b2eGZ4yi50qzfikNGA&x=1593460588"
+SOURCE="https://dl1.cdn.filezilla-project.org/client/FileZilla_3.48.1_x86_64-linux-gnu.tar.bz2?h=RBOvu7YE7zCSXFMc6EFeMw&x=1593729063"
 OUTPUT="FileZilla.AppImage"
 
 all:
