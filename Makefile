@@ -8,7 +8,7 @@ all:
 	tar xjf filezilla.tar.bz2 -C ./build
 	mkdir -p AppDir/application
 	mkdir -p AppDir/lib
-	cp -r build/FileZilla3/* AppDir/application
+	cp -r build/FileZilla*/* AppDir/application
 	export ARCH=x86_64 && ./bin/appimagetool.AppImage AppDir $(OUTPUT)
 	rm -rf AppDir/application
 	rm -rf AppDir/lib
