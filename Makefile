@@ -17,7 +17,7 @@ all:
 	mkdir --parents $(PWD)/build/AppDir
 	mkdir --parents $(PWD)/build/AppDir/filezilla
 
-	wget --output-document=$(PWD)/build/build.tar.bz2 https://download.filezilla-project.org/client/FileZilla_latest_x86_64-linux-gnu.tar.bz2
+	wget --output-document=$(PWD)/build/build.tar.bz2 https://dl4.cdn.filezilla-project.org/client/FileZilla_3.53.0_x86_64-linux-gnu.tar.bz2?h=CHbTjEcS9hdCMMcYfQCbww&x=1616791174
 	tar xjf $(PWD)/build/build.tar.bz2 -C $(PWD)/build
 
 	wget --output-document=$(PWD)/build/build.rpm http://mirror.centos.org/centos/8/AppStream/x86_64/os/Packages/gtk2-2.24.32-4.el8.x86_64.rpm
