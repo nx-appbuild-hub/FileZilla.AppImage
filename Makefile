@@ -13,30 +13,22 @@ PWD:=$(shell pwd)
 
 
 all:
-	mkdir --parents $(PWD)/build
-	mkdir --parents $(PWD)/build/AppDir
-	mkdir --parents $(PWD)/build/AppDir/filezilla
+	mkdir --parents $(PWD)/build/Boilerplate.AppDir
+	apprepo --destination=$(PWD)/build appdir boilerplate libatk1.0-0 libatk-bridge2.0-0 libgtk-3-0 libreadline8 \
+							filezilla filezilla-common  libfilezilla0	
+	
+	echo "exec \$${APPDIR}/bin/filezilla \"\$${@}\"" >> $(PWD)/build/Boilerplate.AppDir/AppRun
 
-	wget --output-document=$(PWD)/build/build.tar.bz2 https://dl4.cdn.filezilla-project.org/client/FileZilla_3.53.0_x86_64-linux-gnu.tar.bz2?h=CHbTjEcS9hdCMMcYfQCbww&x=1616791174
-	tar xjf $(PWD)/build/build.tar.bz2 -C $(PWD)/build
+	rm -f $(PWD)/build/Boilerplate.AppDir/*.desktop 		|| true
+	rm -f $(PWD)/build/Boilerplate.AppDir/*.png 		  	|| true
+	rm -f $(PWD)/build/Boilerplate.AppDir/*.svg 		  	|| true
 
-	wget --output-document=$(PWD)/build/build.rpm http://mirror.centos.org/centos/8/AppStream/x86_64/os/Packages/gtk2-2.24.32-4.el8.x86_64.rpm
-	cd $(PWD)/build && rpm2cpio $(PWD)/build/build.rpm | cpio -idmv && cd ..
+	cp --force $(PWD)/AppDir/*.svg 		  	$(PWD)/build/Boilerplate.AppDir 			|| true
+	cp --force $(PWD)/AppDir/*.desktop 		$(PWD)/build/Boilerplate.AppDir 			|| true
+	cp --force $(PWD)/AppDir/*.png 		  	$(PWD)/build/Boilerplate.AppDir 			|| true
 
-	wget --output-document=$(PWD)/build/build.rpm http://mirror.centos.org/centos/8/AppStream/x86_64/os/Packages/GConf2-3.2.6-22.el8.x86_64.rpm
-	cd $(PWD)/build && rpm2cpio $(PWD)/build/build.rpm | cpio -idmv && cd ..
 
-	wget --output-document=$(PWD)/build/build.rpm http://mirror.centos.org/centos/7/os/x86_64/Packages/pango-1.42.4-4.el7_7.x86_64.rpm
-	cd $(PWD)/build && rpm2cpio $(PWD)/build/build.rpm | cpio -idmv && cd ..
-
-	cp --force --recursive $(PWD)/build/usr/* $(PWD)/build/AppDir/
-	cp --force --recursive $(PWD)/AppDir/* $(PWD)/build/AppDir
-	cp --force --recursive $(PWD)/build/FileZilla*/* $(PWD)/build/AppDir/filezilla
-
-	chmod +x $(PWD)/build/AppDir/AppRun
-	chmod +x $(PWD)/build/AppDir/*.desktop
-
-	export ARCH=x86_64 && $(PWD)/bin/appimagetool.AppImage $(PWD)/build/AppDir $(PWD)/FileZilla.AppImage
+	export ARCH=x86_64 && $(PWD)/bin/appimagetool.AppImage $(PWD)/build/FileZilla.AppDir $(PWD)/Remmina.AppImage
 	chmod +x $(PWD)/FileZilla.AppImage
 
 clean:
