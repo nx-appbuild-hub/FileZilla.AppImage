@@ -28,7 +28,7 @@ all:
 	cp --force $(PWD)/AppDir/*.png 		  	$(PWD)/build/Boilerplate.AppDir 			|| true
 
 
-	export ARCH=x86_64 && $(PWD)/bin/appimagetool.AppImage $(PWD)/build/FileZilla.AppDir $(PWD)/Remmina.AppImage
+	export ARCH=x86_64 && $(PWD)/bin/appimagetool.AppImage $(PWD)/build/Boilerplate.AppDir $(PWD)/FileZilla.AppImage
 	chmod +x $(PWD)/FileZilla.AppImage
 
 clean:
